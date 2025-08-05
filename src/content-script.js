@@ -281,78 +281,132 @@ chrome.storage.local.get("fauxPostEnabled", (data) => {
         box-shadow: 0 6px 24px rgba(0,0,0,0.15);
         z-index: 9999;
         font-family: 'Segoe UI', sans-serif;
-        min-width: 500px;
+        min-width: 300px;
         color: #652b92;
+        width: 25vw;
+        height: 50vh;
+        resize: both;
+        overflow: auto;
+        transform-origin: top left;
+        display: flex;
+        flex-direction: column;
       }
+
+
       .fauxPost-header {
         display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 20px;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 0px;
         cursor: move;
+        height: 20%;
       }
       
+      .fauxPost-inner {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 0;
+        padding-top: 0;
+      }
       
       #fauxPost-original-text, #fauxPost-decoded-text, 
       #fauxPost-key, #fauxPost-url  
       {
-      	outline: none;
-    		box-shadow: none;
-    		width:100%;
-    		margin-bottom:15px;
-    		padding:10px;
-    		border-radius:6px;
-    		border:2px solid #652b92;
-    		background:#ffffff;
-    		white-space:pre-wrap;
-    		font-family:monospace;
-    		
+        outline: none;
+        box-shadow: none;
+        width: 100%;
+        margin-bottom: 5px;
+        padding: 5px;
+        border-radius: 6px;
+        border: 2px solid #652b92;
+        background: #ffffff;
+        white-space: pre-wrap;
+        font-family: monospace;
+        box-sizing: border-box;
       }
       
-      #fauxPost-original-text, #fauxPost-decoded-text
-      {
-      	height:100px;
+      #fauxPost-original-text, #fauxPost-decoded-text {
+        height: 10vh;
+        font-size: 1em;
+        line-height: 1.2em;
+        min-height: calc(2 * 1.2em + 20px);
+        max-height: 40vh;
+        resize: vertical;
       }
       
       #fauxPost-original-text:hover, #fauxPost-decoded-text:hover, 
       #fauxPost-key:hover, #fauxPost-url:hover  
       {
-    		border: none;
-    		box-shadow: inset 0 0 0 2px #c54aee;
-			}
+        border: none;
+        box-shadow: inset 0 0 0 2px #c54aee;
+      }
+
+      /* Only for the title image (proportional resizing) */
+      .popup-image {
+        max-height: 70%;
+        width: 60%;
+        object-fit: contain;
+        flex: 1;
+      }
+
+      /* For the icon image (fixed aspect and size) */
+      .popup-image-icon {
+        height: 70%;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        flex: 0 0 auto;
+      }
       
       
     </style>
     <div id="fauxPost-draggable" class="fauxPost-popup">
-      <div id="fauxPost-drag-handle" class="fauxPost-header">
-        <img src="${chrome.runtime.getURL(
-          "/images/icon.png"
-        )}" alt="FauxPost Icon" style="width:128px;height:128px;border:2px solid #652b92;border-radius:12px;background-color: #ffffff">
-         <img src="${chrome.runtime.getURL(
-           "/images/title.png"
-         )}" alt="FauxPost Title" style="height:128px;border:2px solid #652b92;border-radius:12px;background-color: #ffffff">
-        
-      </div>
-      <p><strong style="color:#fdcb00;">URN:</strong></p>
-      <div id="fauxPost-urn" style="margin-bottom:15px;word-break:break-word;font-family:monospace;"></div>
-      <p><strong style="color:#fdcb00;">Original Content:</strong></p>
-      <textarea id="fauxPost-original-text" readonly></textarea>
-      <p><strong style="color:#fdcb00;">FauxPost Text:</strong></p>
-      <textarea id="fauxPost-decoded-text"></textarea>
-      <p><strong style="color:#fdcb00;">Key:</strong></p>
-      <input id="fauxPost-key" type="text" readonly/>
-      <p><strong style="color:#fdcb00;">FauxPost URL:</strong></p>
-      <input id="fauxPost-url" type="text" readonly/>
-      
-      <div style="display:flex;justify-content:space-between;margin-top:10px;">
-      	<button id="fauxPost-copy-url" class="fauxPost-btn btn-copy">Copy URL</button>
-        <button id="fauxPost-decode" class="fauxPost-btn btn-decode">FauxPost</button>
-        <button id="fauxPost-original" class="fauxPost-btn btn-original">Original</button>
-      </div>
+
+            <div class="fauxPost-inner">
+        <div id="fauxPost-drag-handle" class="fauxPost-header">
+          <img src="${chrome.runtime.getURL(
+            "/images/icon.png"
+          )}" alt="FauxPost Icon" class="popup-image-icon" style="border:2px solid #652b92;border-radius:12px;background-color: #ffffff">
+           <img src="${chrome.runtime.getURL(
+             "/images/title.png"
+           )}" alt="FauxPost Title" class="popup-image" style="border:2px solid #652b92;border-radius:12px;background-color: #ffffff">
+        </div>
+        <p><strong style="color:#fdcb00;">URN:</strong></p>
+        <div id="fauxPost-urn" style="margin-bottom:15px;word-break:break-word;font-family:monospace;"></div>
+        <p><strong style="color:#fdcb00;">Original Content:</strong></p>
+        <textarea id="fauxPost-original-text" readonly></textarea>
+        <p><strong style="color:#fdcb00;">FauxPost Text:</strong></p>
+        <textarea id="fauxPost-decoded-text"></textarea>
+        <p><strong style="color:#fdcb00;">Key:</strong></p>
+        <input id="fauxPost-key" type="text" readonly/>
+        <p><strong style="color:#fdcb00;">FauxPost URL:</strong></p>
+        <input id="fauxPost-url" type="text" readonly/>
+        <div style="display:flex;justify-content:space-between;margin-top:10px;">
+          <button id="fauxPost-copy-url" class="fauxPost-btn btn-copy">Copy URL</button>
+          <button id="fauxPost-decode" class="fauxPost-btn btn-decode">FauxPost</button>
+          <button id="fauxPost-original" class="fauxPost-btn btn-original">Original</button>
+        </div>
+
+
     </div>
   `;
 
+
+      // No scale-factor transform needed; responsive layout handles resizing
+  
+
     document.body.appendChild(popup);
+
+    // Prevent background scroll when hovering over the popup
+    popup.addEventListener('mouseenter', () => {
+      document.body.style.overflow = 'hidden';
+    });
+
+    popup.addEventListener('mouseleave', () => {
+      document.body.style.overflow = '';
+    });
 
     enableDrag();
 
