@@ -30,15 +30,15 @@ function getFauxPostData() {
   });
 }
 
-// Constructs shareable FauxPost URLs for all saved entries that include a 'key'
+// Constructs shareable FauxPost URLs for all saved entries; includes placeholder for missing keys
 async function buildFauxPostURLs() {
   const savedData = await getFauxPostData();
-  return Object.entries(savedData)
-    .filter(([urn, data]) => data.key)
-    .map(([urn, data]) => ({
-      urn,
-      url: `https://www.linkedin.com/feed/_#fauxPost?vkey=${data.key}`
-    }));
+  return Object.entries(savedData).map(([urn, data]) => ({
+    urn,
+    url: data.key
+      ? `https://www.linkedin.com/feed/_#fauxPost?vkey=${data.key}`
+      : '(missing key)'
+  }));
 }
 
 // Enables or disables the Clear button based on whether any checkboxes are selected
@@ -152,24 +152,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   
   clearBtn.addEventListener('click', async () => {
-  const checkboxes = document.querySelectorAll('.delete-checkbox:checked');
+    const checkboxes = document.querySelectorAll('.delete-checkbox:checked');
 
-  if (checkboxes.length > 0) {
-    // Delete only selected records
-    const { fauxPost_data } = await chrome.storage.local.get('fauxPost_data');
+    if (checkboxes.length > 0) {
+      // Delete only selected records
+      const keysToRemove = Array.from(checkboxes).map(
+        (box) => `fauxPost_${box.dataset.urn}`
+      );
+      await chrome.storage.local.remove(keysToRemove);
+    }
 
-    checkboxes.forEach(box => {
-      const urn = box.dataset.urn;
-      delete fauxPost_data[urn];
-    });
+    await renderFauxPostLinks(linkContainer);
 
-    await chrome.storage.local.set({ fauxPost_data });
-  } else {
-    // If no checkboxes selected, delete all saved FauxPost records
-    await chrome.storage.local.remove('fauxPost_data');
-  }
-
-  await renderFauxPostLinks(linkContainer);
+    updateClearButtonState();
 });
   
   
