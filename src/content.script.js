@@ -419,11 +419,15 @@ chrome.storage.local.get("fauxPostEnabled", (data) => {
     };
     document.getElementById("fauxPost-decode").onclick = async () => {
       showDecoded(mainElement, decodedTextarea.value);
-      await saveFauxPostData(urn, {
-        original: originalText,
-        decoded: decodedTextarea.value,
-        key: keyInput.value,
-      });
+
+      if(keyInput.value){
+        await saveFauxPostData(urn, {
+          original: originalText,
+          decoded: decodedTextarea.value,
+          key: keyInput.value,
+        });
+      }
+      
       popup.remove();
     };
 
@@ -582,13 +586,15 @@ chrome.storage.local.get("fauxPostEnabled", (data) => {
 
       const redirectData = decodeOuterFauxPostData(redirectPathParam);
 
-      window.location.href = redirectData.newUrl;
-
       await saveFauxPostData(redirectData.urn, {
         original: null,
         decoded: redirectData.decodedValue,
         key: redirectPathParam,
       });
+
+      window.location.href = redirectData.newUrl;
+
+
 
       return;
     }
