@@ -1,3 +1,4 @@
+![FauxPost Banner](/images/FauxPostImage.png)
 # FauxPost 🕵️‍♂️✨
 
 **FauxPost** is a satirical Chrome Extension that lets you rewrite the *appearance* of LinkedIn posts — without modifying the original content. It’s a tool for creative commentary, parody, and playful edits, giving you the power to present social posts with an alternate message while leaving the original untouched.
