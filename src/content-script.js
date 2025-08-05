@@ -399,14 +399,10 @@ chrome.storage.local.get("fauxPostEnabled", (data) => {
 
     document.body.appendChild(popup);
 
-    // Prevent background scroll when hovering over the popup
-    popup.addEventListener('mouseenter', () => {
-      document.body.style.overflow = 'hidden';
-    });
-
-    popup.addEventListener('mouseleave', () => {
-      document.body.style.overflow = '';
-    });
+    // Prevent wheel events inside the popup from propagating to the page (and thus scrolling the background)
+    popup.addEventListener('wheel', (e) => {
+      e.stopPropagation();
+    }, { passive: true });
 
     enableDrag();
 
@@ -470,6 +466,7 @@ chrome.storage.local.get("fauxPostEnabled", (data) => {
     document.getElementById("fauxPost-original").onclick = () => {
       showOriginal(mainElement);
       popup.remove();
+      document.body.style.overflow = '';
     };
     document.getElementById("fauxPost-decode").onclick = async () => {
       showDecoded(mainElement, decodedTextarea.value);
@@ -483,6 +480,7 @@ chrome.storage.local.get("fauxPostEnabled", (data) => {
       }
       
       popup.remove();
+      document.body.style.overflow = '';
     };
 
 
