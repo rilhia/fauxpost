@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "FauxPost",
+  "version": "1.0",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "fauxPost_enabled.html",
+    "default_icon": "/images/icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+    "matches": ["*://www.linkedin.com/*"],
+    "js": ["content-script.js"],
+    "run_at": "document_idle"
+  	}
+  ],
+  "icons": {
+    "16": "/images/icon.png",
+    "48": "/images/icon.png",
+    "128": "/images/icon.png"
+  },
+  "web_accessible_resources": [
+  {
+    "resources": ["/images/icon.png",
+    							"/images/title.png"],
+    "matches": ["<all_urls>"]
+  }
+]
+}

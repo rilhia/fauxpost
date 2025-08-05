@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+
+<head>
+  <title>FauxPost Settings</title>
+  <meta content="text/html; charset=utf-8" />
+  <style>
+    html {
+      margin: 0;
+      padding: 0;
+      border-radius: 12px;
+      overflow: hidden;
+
+    }
+
+    body {
+      padding: 10px;
+      background: #009781;
+      border: 4px solid #652b92;
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+      z-index: 9999;
+      font-family: 'Segoe UI', sans-serif;
+      color: #fdcb00;
+    }
+
+
+
+    #clearDataBtn {
+
+      background: #005d3f;
+      color: #fdcb00;
+      border: 2px solid #fdcb00;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #clearDataBtn:hover {
+      background: #ffffff;
+      color: #005d3f;
+      border: 2px solid #005d3f;
+    }
+
+    #clearDataBtn:disabled {
+      background: #267362;
+      color: #999e99;
+      border: 2px solid #999e99;
+      cursor: not-allowed;
+      opacity: 0.8;
+    }
+
+
+    #fauxPostLinksWrapper {
+      overflow-x: auto;
+      max-width: 100%;
+      margin-top: 10px;
+      border: 1px solid #fdcb00;
+      border-radius: 6px;
+    }
+
+    #fauxPostLinks {
+      width: 100%;
+      min-width: 600px;
+      /* or whatever width fits your links */
+      border-collapse: collapse;
+      table-layout: fixed;
+      word-wrap: break-word;
+    }
+
+    #fauxPostLinks td,
+    #fauxPostLinks th {
+      padding: 8px;
+      color: #fdcb00;
+      border: 1px solid #fdcb00;
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    #postLink {
+      color: #652b92;
+    }
+
+    #postLink:hover {
+      color: #fdcb00;
+    }
+  </style>
+</head>
+
+<body>
+  <label>
+    <input type="checkbox" id="toggleActive" />
+    Enable FauxPost on LinkedIn
+  </label>
+
+  <p id="recordCount" style="margin-top: 10px;"></p>
+  <button id="clearDataBtn" style="margin-top: 5px;">Delete Selected Records</button>
+  <br>
+
+  <div id="fauxPostLinksWrapper" style="max-height: 9em; overflow-y: auto;">
+    <table id="fauxPostLinks" style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th style="width: 2em; position: sticky; left: 0; color: #fdcb00;">#</th>
+          <th style="color: #fdcb00;">Link</th>
+          <th style="width: 5em; position: sticky; left: 0; color: #fdcb00; text-align: right; white-space: nowrap;">
+            Delete <input type="checkbox" id="selectAllToDelete" /></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <script src="utils.js"></script>
+  <script src="fauxPost_enabled.js"></script>
+</body>
+
+</html>
