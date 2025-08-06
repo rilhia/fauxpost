@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FauxPost",
-  "version": "1.0",
+  "version": "1.01",
   "permissions": ["storage"],
   "action": {
     "default_popup": "fauxPost_enabled.html",
