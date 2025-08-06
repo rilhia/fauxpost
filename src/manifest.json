@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FauxPost",
-  "version": "1.02",
+  "version": "1.03",
   "permissions": ["storage"],
   "action": {
     "default_popup": "fauxPost_enabled.html",
@@ -18,9 +18,7 @@
     }
   ],
   "icons": {
-    "16": "images/icon.png",
-    "48": "images/icon.png",
-    "128": "images/icon.png"
+    "128": "images/small-icon.png"
   },
   "web_accessible_resources": [
     {
