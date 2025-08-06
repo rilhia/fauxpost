@@ -9,6 +9,31 @@ Users can modify the text of LinkedIn posts for personal use or share tailored v
 
 ---
 
+## 💬 Why Use FauxPost?
+
+FauxPost is a playful response to the growing weirdness of online self-promotion. It lets you rewrite LinkedIn posts the way you feel they should have been written. Whether you're calling out corporate nonsense, decoding a humblebrag, or just having a laugh with like-minded people.
+
+You can even create a LinkedIn paper trail by sharing a starting link that leads others through a sequence of posts, each revealing part of a larger message or campaign.
+
+Perfect for:
+- Satirists and social commentators  
+- Observational comedians and mischief-makers  
+- Job seekers with personality  
+- Anyone who’s allergic to “influencer-speak”  
+- Marketing teams creating interactive campaigns or LinkedIn post Easter egg trails
+
+---
+
+## 🚀 Features
+
+- ✍️ **Live editing** of visible LinkedIn post content
+- 🔗 **Sharable URLs** for your rewritten versions
+- 🔒 **Content is stored locally** in the browser — no external server required
+- 📦 **No tracking, no analytics, no nonsense**
+- 🧠 **Intended for satire, commentary, or just plain fun**
+
+---
+
 ## 🧩 How to Use FauxPost
 1. **Install FauxPost**
    To install the FauxPost Chrome Extension, go to https://chromewebstore.google.com/detail/fauxpost/albklnhkabkccdpdimjnnlbppakgfgna and click the **"Add To Chrome"** button.
@@ -67,18 +92,6 @@ Users can modify the text of LinkedIn posts for personal use or share tailored v
 
    https://tinyurl.com/27xbkkxn
       
-
-
----
-
-## 🚀 Features
-
-- ✍️ **Live editing** of visible LinkedIn post content
-- 🔗 **Sharable URLs** for your rewritten versions
-- 🔒 **Content is stored locally** in the browser — no external server required
-- 📦 **No tracking, no analytics, no nonsense**
-- 🧠 **Intended for satire, commentary, or just plain fun**
-
 ---
 
 ## 🔧 Developer Details
@@ -86,8 +99,6 @@ Users can modify the text of LinkedIn posts for personal use or share tailored v
 This project includes:
 - `src/` – All core source code
 - `src/images/` – Icons and assets
-- `dist/` – Minified, ready-to-install version of the extension (optional)
-- `manifest.json` – Chrome Extension manifest (v3)
 - `README.md` – You’re reading it
 
 See the `src/` folder for:
@@ -96,25 +107,16 @@ See the `src/` folder for:
 - `fauxPost_enabled.html` — The popup interface
 - `fauxPost_enabled.js` — Logic for the editor UI
 - `background.js` — Background process (if used)
-- *(Optionally)* `utils.js` — Reusable helper functions
+- `manifest.json` – Chrome Extension manifest (v3)
 
 ---
 
-## 🖼️ Screenshots
+## 📦 Manual Installation (Unpacked)
 
-<!-- Add screenshots here -->
-- Editor Popup
-- Original vs FauxPost View
-- FauxPost button on a post
-
----
-
-## 📦 Installation (Unpacked)
-
-1. Clone or download this repository.
-2. In Chrome, go to `chrome://extensions/`
+1. Clone or download the **'src'** folder.
+2. In Chrome, go to **`chrome://extensions/`**
 3. Enable **Developer mode**.
-4. Click **Load unpacked** and select the `src/` or `dist/` folder.
+4. Click **Load unpacked** and select the **'src'** folder.
 5. Open LinkedIn and look for the FauxPost button on posts.
 
 ---
@@ -125,21 +127,8 @@ This project is licensed under the **MIT License**. Attribution is appreciated. 
 
 ---
 
-## 💬 Why FauxPost?
-
-FauxPost was built as a playful critique of social media performativity — a tool to **decode the humblebrag**, **mock the nonsense**, or **say what we’re all thinking**, but in your own words.
-
-Ideal for:
-- Satirists
-- Observational comedians
-- Job seekers with a sense of humor
-- Anyone tired of “influencer-speak”
-
----
-
 ## 🙋‍♂️ Author
 
-Created by [Your Name]  
-[LinkedIn] | [Website] | [GitHub]
+Created by Richard Hall  
+[[LinkedIn]](https://www.linkedin.com/in/rilhia/) | [[GitHub](https://github.com/rilhia)]
 
-*Built in desperation. Released in hope.*
